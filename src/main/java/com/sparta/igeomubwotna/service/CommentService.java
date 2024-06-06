@@ -14,35 +14,4 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CommentService {
-
-    private final CommentRepository commentRepository;
-    private final RecipeService recipeService;
-    private final UserService userService;
-
-    /* Create : 댓글 작성 */
-    public CommentResponseDto createComment(CommentRequestDto requestDto, Long recipeId, Long userId) {
-        Recipe recipe = recipeService.findRecipeById(recipeId);
-        User user = userService.findUserById(userId);
-        Comment comment = new Comment(requestDto, recipe, user);
-
-        commentRepository.save(comment);
-        return new CommentResponseDto("comment가 등록되었습니다.");
-    }
-
-    /* Read : 댓글 조회 (레시피에 대한 전체 댓글) */
-    public List<CommentResponseDto> getComment(Long recipeId) {
-        Recipe recipe = recipeService.findRecipeById(recipeId);
-
-        List<Commemt> commentList = commentRepository.findByRecipeId(recipeId);
-        return commentList;
-    }
-
-
-    /* ID로 comment 찾기 */
-    private Comment findById(Long commentId) {
-        return commentRepository.findById(commentId).orElseThrow(() ->
-                new IllegalArgumentException("해당 댓글이 존재하지 않습니다.")
-        );
-    }
-
 }

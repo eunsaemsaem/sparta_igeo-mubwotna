@@ -30,12 +30,12 @@ public class Comment extends Timestamped{
     /* Mapping */
     //작성자 ID
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private User user;
 
     //레시피 ID
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id")
+    @JoinColumn(name = "recipeId")
     private Recipe recipe;
 
     /* Constructor */

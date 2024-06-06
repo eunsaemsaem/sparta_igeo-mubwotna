@@ -15,19 +15,4 @@ import java.util.List;
 public class CommentController {
 
     private final CommentService commentService;
-
-    /* Create */
-    @PostMapping
-    public CommentResponseDto createComment (@RequestBody CommentRequestDto requestDto,
-                                             @PathVariable Long recipeId,
-                                             @PathVariable Long userId) {
-        return commentService.createComment(requestDto, recipeId, userId);
-    }
-
-    /* Update */
-    @GetMapping
-    public ResponseEntity<List<CommentResponseDto>> getComment (@PathVariable Long recipeId) {
-        return ResponseEntity.ok().body(commentService.getComment(recipeId));
-    }
-
 }
