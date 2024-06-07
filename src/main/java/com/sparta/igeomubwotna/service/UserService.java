@@ -5,6 +5,7 @@ import com.sparta.igeomubwotna.dto.SigninRequestDto;
 import com.sparta.igeomubwotna.dto.SignupRequestDto;
 import com.sparta.igeomubwotna.dto.UserProfileDto;
 import com.sparta.igeomubwotna.dto.UserUpdateRequestDto;
+import com.sparta.igeomubwotna.entity.Recipe;
 import com.sparta.igeomubwotna.entity.User;
 import com.sparta.igeomubwotna.jwt.JwtUtil;
 import com.sparta.igeomubwotna.repository.UserRepository;
@@ -165,5 +166,11 @@ public class UserService {
 
         Response response = new Response(HttpStatus.OK.value(), "프로필 정보를 성공적으로 수정하였습니다.");
         return ResponseEntity.ok().body(response);
+    }
+
+    public User findById(Long recipeId) {
+        return userRepository.findById(recipeId).orElseThrow(() ->
+                new IllegalArgumentException("해당 레시피가 존재하지 않습니다.")
+        );
     }
 }
